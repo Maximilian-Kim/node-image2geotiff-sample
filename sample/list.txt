@@ -1,0 +1,2 @@
+./output/fox1.tif
+./output/fox2.tif
