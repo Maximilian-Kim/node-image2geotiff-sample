@@ -1,2 +1,9 @@
 ./output/fox1.tif
 ./output/fox2.tif
+./output/fox3.tif
+./output/fox4.tif
+./output/fox5.tif
+./output/fox6.tif
+./output/fox7.tif
+./output/fox8.tif
+./output/fox9.tif

@@ -13,32 +13,29 @@ const { spawn } = require("child_process");
  */
 
 async function sample() {
+
+  const scale = 1000 // 1000 meter
+  const img = "./sample/fox.jpg"
+
   // make GeoTiff
-  await makeGeoTiff("./sample/fox.jpg", "./output/fox1.tif", {
-    inputFileType: "JPEG",
-    EPSG: 3857,
-    resolution: 1000,
-    imgX: 450,
-    imgY: 450,
-    mapX: 0,
-    mapY: 1000,
-  });
-  await makeGeoTiff("./sample/fox.jpg", "./output/fox2.tif", {
-    inputFileType: "JPEG",
-    EPSG: 3857,
-    resolution: 500,
-    imgX: 450,
-    imgY: 450,
-    mapX: 1000,
-    mapY: 500,
-  });
+  await Promise.all([
+    makeGeoTiff(img, "./output/fox1.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 1 * scale, imgX: 450, imgY: 450, mapX: 0, mapY: 1 * scale }),
+    makeGeoTiff(img, "./output/fox2.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 2 * scale, imgX: 450, imgY: 450, mapX: 1 * scale, mapY: 2 * scale }),
+    makeGeoTiff(img, "./output/fox3.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 3 * scale, imgX: 450, imgY: 450, mapX: 3 * scale, mapY: 3 * scale }),
+    makeGeoTiff(img, "./output/fox4.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 4 * scale, imgX: 450, imgY: 450, mapX: 6 * scale, mapY: 4 * scale }),
+    makeGeoTiff(img, "./output/fox5.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 5 * scale, imgX: 450, imgY: 450, mapX: 10 * scale, mapY: 5 * scale }),
+    makeGeoTiff(img, "./output/fox6.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 6 * scale, imgX: 450, imgY: 450, mapX: 15 * scale, mapY: 6 * scale }),
+    makeGeoTiff(img, "./output/fox7.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 7 * scale, imgX: 450, imgY: 450, mapX: 21 * scale, mapY: 7 * scale }),
+    makeGeoTiff(img, "./output/fox8.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 8 * scale, imgX: 450, imgY: 450, mapX: 28 * scale, mapY: 8 * scale }),
+    makeGeoTiff(img, "./output/fox9.tif", { inputFileType: "JPEG", EPSG: 3857, resolution: 9 * scale, imgX: 450, imgY: 450, mapX: 36 * scale, mapY: 9 * scale }),
+
+  ])
 
   // merge GeoTiff files
   await mergeGeoTiff("./sample/list.txt");
 }
 
 /**
- *
  * @param {string} inputPath
  * @param {string} outputPath
  * @param {MakeGeoTiffParams} params
